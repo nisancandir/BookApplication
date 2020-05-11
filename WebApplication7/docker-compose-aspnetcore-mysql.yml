@@ -1,0 +1,29 @@
+version: '3'
+
+volumes:
+  datafiles:
+
+services:
+  db:
+    image: mysql:8.0.20
+    volumes:
+      - datafiles:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: nisanS36
+      MYSQL_TCP_PORT: 3307
+
+  mvc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8888:80"
+    restart: always
+    environment:
+      - DBHOST=book_try
+      - DBPORT=3307
+      - DBPASSWORD=nisanS36
+      - ASPNETCORE_ENVIRONMENT=Development

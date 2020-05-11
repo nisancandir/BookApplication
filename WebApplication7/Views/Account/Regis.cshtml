@@ -1,0 +1,11 @@
+﻿@model WebApplication7.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Regis";
+}
+
+<h2>Register</h2>
+<form action="/Account/Regis" method="post">
+    Email:  <input asp-for="Email" /> <br />
+    Password: <input asp-for="Password" /><br />
+    <button type="submit">Register</button>
+</form>
