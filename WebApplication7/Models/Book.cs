@@ -15,6 +15,8 @@ namespace WebApplication7.Models
 
         public string AuthorName { get; set; }
 
-        public string Alphabet { get; set; }
+        public int Available { get; set; }
+        public string Price { get; set; }
+
     }
 }

@@ -35,14 +35,16 @@ namespace WebApplication7
                         list.Add(new Book()
                         {
                             Id = Convert.ToInt32(reader["id"]),
-                            BookName = reader["book_title"].ToString(),
+                            BookName = reader["book_name"].ToString(),
                             AuthorName = reader["author_name"].ToString(),
-                            Alphabet = reader["alphabet"].ToString()
+                            Available= Convert.ToInt32(reader["booked"]),
+                            Price = reader["price"].ToString(),
                         });
                     }
                 }
             }
             return list;
         }
+
     }
 }

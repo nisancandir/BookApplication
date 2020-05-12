@@ -15,6 +15,10 @@ namespace WebApplication7.Controllers
             List<Book> list = context.GetAllBooks();
             return View(list);
         }
+        public IActionResult Buy(int id)
+        {
+            return View();
+        }
 
     }
 }
