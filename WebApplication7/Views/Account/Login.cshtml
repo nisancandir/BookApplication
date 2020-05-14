@@ -4,9 +4,10 @@
 }
 
 <h2>Login</h2>
-<form action="/Account/Login" method="post">
-    Username:  <input asp-for="Username" /> <br />
-    Email:  <input asp-for="Email" /> <br />
-    Password: <input asp-for="Password" /><br />
-    <button type="submit">Register</button>
+<form action="/Account/CheckUser" method="post">
+    Username:  <input name="txtName" asp-for="Username" /> <br />
+    Email:  <input name="txtEmail" asp-for="Email" /> <br />
+    Password: <input name="txtPassword" asp-for="Password" /><br />
+    <button type="submit">Login</button>
 </form>
+<h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>
