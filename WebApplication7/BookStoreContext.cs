@@ -37,7 +37,7 @@ namespace WebApplication7
                             Id = Convert.ToInt32(reader["id"]),
                             BookName = reader["book_name"].ToString(),
                             AuthorName = reader["author_name"].ToString(),
-                            Available= Convert.ToInt32(reader["booked"]),
+                            Available = Convert.ToInt32(reader["booked"]),
                             Price = reader["price"].ToString(),
                         });
                     }
@@ -45,6 +45,29 @@ namespace WebApplication7
             }
             return list;
         }
+
+        public int SaveDetails(RegisterViewModel umodel)
+        {
+
+            int Id;
+            using (MySqlConnection conn = GetConnection())
+            {
+
+                conn.Open();
+                var sqlCommand = "INSERT INTO users(username,email,password,money,admin) VALUES(@Username1, @Email1,@Password1,50,0);";
+                using (var command = new MySqlCommand(sqlCommand, conn))
+                {
+
+                    command.ExecuteNonQuery();
+                    Id = (int)command.LastInsertedId;
+                }
+                conn.Close();
+            }
+
+            return Id;
+        }
+
+
 
     }
 }

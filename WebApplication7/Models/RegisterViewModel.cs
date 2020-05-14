@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication7.Models
 {
+
     public class RegisterViewModel
     {
         public string Username { get; set; }
@@ -15,4 +16,9 @@ namespace WebApplication7.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
+    
+
+
+
+
 }
