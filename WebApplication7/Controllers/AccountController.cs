@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication7.Models;
 namespace WebApplication7.Controllers
@@ -19,36 +20,41 @@ namespace WebApplication7.Controllers
 
             return View();
         }
-
+       
         [HttpPost]
         public IActionResult GetDetails()
         {
-            RegisterViewModel umodel = new RegisterViewModel();
+            int result = 0;
+            User umodel = new User();
             umodel.Username = HttpContext.Request.Form["txtName"].ToString();
             umodel.Email = HttpContext.Request.Form["txtEmail"].ToString();
             umodel.Password = HttpContext.Request.Form["txtPassword"].ToString();
             BookStoreContext context = HttpContext.RequestServices.GetService(typeof(BookStoreContext)) as BookStoreContext;
             int result1 = context.CheckEmail(umodel);
-            if (result1 == 1)
+            if (result1 > 0)
             {
                 ViewBag.Result = "This user already exists";
-
+                return View("~/Views/Account/Regis.cshtml"); ;
             }
             else
             {
 
-                int result = context.SaveDetails(umodel);
+                umodel = context.SaveDetails(umodel);
+                result = umodel.Userıd;
                 if (result > 0)
                 {
                     ViewBag.Result = "Data Saved Successfully      " + result;
+                    HttpContext.Session.SetObjectAsJson("User", umodel);
+                    return View("~/Views/Home/Index.cshtml");
                 }
                 else
                 {
                     ViewBag.Result = "Something Went Wrong";
+                    return View("~/Views/Account/Regis.cshtml");
                 }
                 
             }
-            return View("Regis");
+           
 
         }
         public IActionResult Login()
@@ -56,18 +62,28 @@ namespace WebApplication7.Controllers
 
             return View();
         }
+        public IActionResult Welcome()
+        {
+
+            return View();
+        }
+      
         [HttpPost]
         public IActionResult CheckUser()
         {
-            RegisterViewModel umodel = new RegisterViewModel();
+            int result;
+            User umodel = new User();
             umodel.Username = HttpContext.Request.Form["txtName"].ToString();
             umodel.Email = HttpContext.Request.Form["txtEmail"].ToString();
             umodel.Password = HttpContext.Request.Form["txtPassword"].ToString();
             BookStoreContext context = HttpContext.RequestServices.GetService(typeof(BookStoreContext)) as BookStoreContext;
-            int result = context.CheckEmail(umodel);
-            if (result == 1)
+            umodel = context.CheckUserInfo(umodel);
+            result = umodel.Userıd;
+            
+            if (result > 0)
             {
-                return View("Index");
+                HttpContext.Session.SetObjectAsJson("User", umodel);
+                return View("~/Views/Home/Index.cshtml",result);
                
             }
             else

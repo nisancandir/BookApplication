@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h2>Index</h2>
+<h2>List of Books</h2>
     <p>
         <a asp-action="Create">Create New</a>
     </p>
@@ -31,6 +31,7 @@
         <tbody>
             @foreach (var item in Model)
             {
+                
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Id)
@@ -42,6 +43,7 @@
                     @Html.DisplayFor(modelItem => item.AuthorName)
                 </td>
                 <td>
+                    
                     @Html.DisplayFor(modelItem => item.Available)
                 </td>
                 <td>
@@ -53,7 +55,7 @@
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
                 <td>
-                    @Html.ActionLink("Buy", "Buy", new { /* id=item.PrimaryKey */ }) 
+                    @Html.ActionLink("Buy", "Buy", new {  id=item.Id  }) 
                 </td>
             </tr>
             }

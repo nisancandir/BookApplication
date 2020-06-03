@@ -35,6 +35,11 @@ namespace WebApplication7
             services.AddTransient<AppDb>(_ => new AppDb(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.Add(new ServiceDescriptor(typeof(BookStoreContext), new BookStoreContext(Configuration.GetConnectionString("DefaultConnection"))));
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);//You can set Time   
+            });
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +54,7 @@ namespace WebApplication7
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -58,7 +63,7 @@ namespace WebApplication7
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Welcome}/{id?}");
             });
         }
     }

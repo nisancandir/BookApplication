@@ -1,12 +1,16 @@
-﻿@model WebApplication7.Models.Bought
+﻿
 @{
     ViewData["Title"] = "Buy";
 }
 
 <h2>Purchase</h2>
-<form action="/Book/BuyBooks" method="post">
+
+<form action="/Book/BooksBuy" method="post">
     <h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>
-    Username: <input name="txtUname" asp-for="UserName" /><br />
+
+    
     <button type="submit">Buy</button>
 </form>
+<h2 style="font-style:italic; color:deeppink">@ViewBag.Ava</h2>
+
 

@@ -10,9 +10,9 @@ namespace WebApplication7.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
+            return View(id);
         }
 
         public IActionResult About()
@@ -33,6 +33,7 @@ namespace WebApplication7.Controllers
         {
             return View();
         }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

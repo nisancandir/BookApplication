@@ -12,13 +12,14 @@ namespace WebApplication7.Models
 
         public int UserId { get; set; }
 
-        public int BookId { get; set; }
+        
         public int Booked { get; set; }
         public string BookName { get; set; }
         public Double Money { get; set; }
 
         public string AuthorName { get; set; }
         public string UserName { get; set; }
+       
 
 
     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +18,8 @@ namespace WebApplication7.Models
         public string AuthorName { get; set; }
 
         public int Available { get; set; }
-        public string Price { get; set; }
-
+        public double Price { get; set; }
+        
     }
+
 }

@@ -15,7 +15,7 @@ namespace WebApplication7.Models
 
     public class RegisterViewModel
     {
-        internal AppDb Db { get; set; }
+        
 
         private BookStoreContext context;
         public string Username { get; set; }
@@ -24,14 +24,8 @@ namespace WebApplication7.Models
 
         
         public string Password { get; set; }
-        public RegisterViewModel()
-        {
-        }
-
-        internal RegisterViewModel(AppDb db)
-        {
-            Db = db;
-        }
+    
+      
 
 
 
